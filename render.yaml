@@ -1,0 +1,29 @@
+# Exported from Render on 2025-01-30T20:41:13Z
+services:
+  - type: web
+    name: TODO-MERN-APP-1
+    runtime: static
+    repo: https://github.com/rirxre/TODO-MERN-APP
+    envVars:
+    - key: VITE_BACKEND_URL
+      sync: false
+    buildCommand: npm install; npm run build
+    staticPublishPath: dist
+    rootDir: frontend
+  - type: web
+    name: TODO-MERN-APP
+    runtime: node
+    repo: https://github.com/rirxre/TODO-MERN-APP
+    plan: free
+    envVars:
+    - key: FRONTEND_URL
+      sync: false
+    - key: JWT_SECRET
+      sync: false
+    - key: DB_URL
+      sync: false
+    region: frankfurt
+    buildCommand: npm run setup
+    startCommand: npm run start
+    rootDir: backend
+version: "1"
